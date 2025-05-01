@@ -89,6 +89,7 @@ return {
       capabilities = capabilities,
       settings = {
         gopls = {
+          buildFlags = { "-tags=integration" },
           analyses = {
             unusedparams = true,
           },

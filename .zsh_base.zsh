@@ -203,6 +203,11 @@ fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 export PINENTRY_PROGRAM="pinentry-rofi"
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+
 
 # ░█▀█░█░░░▀█▀░█▀█░█▀▀
 # ░█▀█░█░░░░█░░█▀█░▀▀█
@@ -222,8 +227,23 @@ alias dcl="docker compose logs -f"
 alias rm='rm -v'
 alias wgup="wg-quick up wg0"
 
-autoload -Uz add-zsh-hook 
-add-zsh-hook precmd automatically_activate_python_venv
+function load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
 
 function automatically_activate_python_venv() {
   if [[ -z $VIRTUAL_ENV ]] ; then
@@ -254,6 +274,10 @@ function activate_venv() {
 }
 
 zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
+
+autoload -Uz add-zsh-hook 
+add-zsh-hook precmd automatically_activate_python_venv
+add-zsh-hook chpwd load-nvmrc
 
 # ░█▀█░█▀█░█░█░█▀▀░█▀▄░█░░░█▀▀░█░█░█▀▀░█░░░▀█░░▄▀▄░█░█
 # ░█▀▀░█░█░█▄█░█▀▀░█▀▄░█░░░█▀▀░▀▄▀░█▀▀░█░░░░█░░█ █░█▀▄

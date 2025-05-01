@@ -190,66 +190,66 @@ local right = {
   c.position,
 }
 
-return {
-  "freddiehaddad/feline.nvim",
-  event = "CmdlineEnter",
-  dependencies = { "lewis6991/gitsigns.nvim" },
-  config = function()
-    local feline = require("feline")
-    feline.setup({
-      custom_providers = {
-        git_remote = function()
-          local branch = vim.system({
-                "git",
-                "rev-parse",
-                "--abbrev-ref",
-                "--symbolic-full-name",
-                "@{u}",
-              })
-              :wait().stdout
-              :sub(1, -2)
-          if branch == nil then
-            return ""
-          end
-          return branch
-        end,
-      },
-      components = {
-        active = {
-          left,
-          middle,
-          right,
-        },
-        inactive = {
-          left,
-          middle,
-          right,
-        },
-      },
-      theme = {
-        fg = "#abb2bf",
-        bg = "#1e2024",
-        green = "#98c379",
-        yellow = "#e5c07b",
-        purple = "#c678dd",
-        orange = "#d19a66",
-        peanut = "#f6d5a4",
-        red = "#e06c75",
-        aqua = "#61afef",
-        darkblue = "#282c34",
-        dark_red = "#f75f5f",
-      },
-      vi_mode_colors = {
-        NORMAL = "green",
-        OP = "green",
-        INSERT = "yellow",
-        VISUAL = "purple",
-        LINES = "orange",
-        BLOCK = "dark_red",
-        REPLACE = "red",
-        COMMAND = "aqua",
-      },
-    })
-    feline.winbar.setup()
-  end,
-}
+--return {
+--  "freddiehaddad/feline.nvim",
+--  event = "CmdlineEnter",
+--  dependencies = { "lewis6991/gitsigns.nvim" },
+--  config = function()
+--    local feline = require("feline")
+--    feline.setup({
+--      custom_providers = {
+--        git_remote = function()
+--          local branch = vim.system({
+--                "git",
+--                "rev-parse",
+--                "--abbrev-ref",
+--                "--symbolic-full-name",
+--                "@{u}",
+--              })
+--              :wait().stdout
+--              :sub(1, -2)
+--          if branch == nil then
+--            return ""
+--          end
+--          return branch
+--        end,
+--      },
+--      components = {
+--        active = {
+--          left,
+--          middle,
+--          right,
+--        },
+--        inactive = {
+--          left,
+--          middle,
+--          right,
+--        },
+--      },
+--      theme = {
+--        fg = "#abb2bf",
+--        bg = "#1e2024",
+--        green = "#98c379",
+--        yellow = "#e5c07b",
+--        purple = "#c678dd",
+--        orange = "#d19a66",
+--        peanut = "#f6d5a4",
+--        red = "#e06c75",
+--        aqua = "#61afef",
+--        darkblue = "#282c34",
+--        dark_red = "#f75f5f",
+--      },
+--      vi_mode_colors = {
+--        NORMAL = "green",
+--        OP = "green",
+--        INSERT = "yellow",
+--        VISUAL = "purple",
+--        LINES = "orange",
+--        BLOCK = "dark_red",
+--        REPLACE = "red",
+--        COMMAND = "aqua",
+--      },
+--    })
+--    feline.winbar.setup()
+--  end,
+--}

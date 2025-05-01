@@ -36,7 +36,7 @@ opt.cursorline = true
 
 opt.wrap = false     -- Disable line wrap
 opt.mouse = "a"      -- make mouse usable
-opt.laststatus = 2   -- keep buffer open
+opt.laststatus = 3   -- keep buffer open
 opt.shell = "zsh"    -- use zsh shell
 opt.spelllang = "en" -- language for spell checker
 opt.spellsuggest = "best, 9"
