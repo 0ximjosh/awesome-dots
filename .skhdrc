@@ -9,6 +9,9 @@ lalt + shift - k : yabai -m window --focus next
 lalt + shift - h : ~/skhd/cycle_clockwise.sh
 lalt + shift - l : ~/skhd/cycle_counterclockwise.sh
 
+cmd - g : sed -i -e '/custom-shader/s/^#*/#/g' /Users/josh/.config/ghostty/config
+cmd + shift - g : sed -i -e '/custom-shader/s/^#*//g' /Users/josh/.config/ghostty/config
+
 lalt - f : yabai -m window --toggle topmost
 lalt - m : yabai -m window --toggle native-fullscreen
 lalt - c : yabai -m window --toggle float

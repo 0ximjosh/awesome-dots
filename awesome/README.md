@@ -27,7 +27,7 @@ Enough to get the job done without sacrificing speed.
 * wallpaper directory
     * Wallpapers
     * Can be any directory containing only images
-    * https://github.com/GentikSolm/nordic-wallpapers
+    * https://github.com/0ximjosh/nordic-wallpapers
     * Change dir in `awesome/scripts/set_wallpapers`
 * amixer
     * Used for audio management

@@ -79,12 +79,12 @@ return {
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
     lspconfig.pyright.setup({})
-    lspconfig.solidity_ls_nomicfoundation.setup({})
-    lspconfig.solidity_ls.setup({
-      capabilities = capabilities,
-      cmd = { "vscode-solidity-server", "--stdio" },
-      filetypes = { "solidity" },
-    })
+    --lspconfig.solidity_ls_nomicfoundation.setup({})
+    --lspconfig.solidity_ls.setup({
+    --  capabilities = capabilities,
+    --  cmd = { "vscode-solidity-server", "--stdio" },
+    --  filetypes = { "solidity" },
+    --})
     lspconfig.gopls.setup({
       capabilities = capabilities,
       settings = {

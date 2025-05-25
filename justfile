@@ -14,7 +14,7 @@ bootstrap_apple:
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k
     mkdir ~/github
     cd ~/github
-    git clone https://github.com/GentikSolm/awesome-dots
+    git clone https://github.com/0ximjosh/awesome-dots
     ln -s kitty ~/.config/
     ln -s neovim ~/.config/
     ln -s cloc ~/.config/
