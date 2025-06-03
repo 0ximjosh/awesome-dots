@@ -11,16 +11,18 @@ return {
       "bashls",
       "dockerls",
       "eslint",
-      "gopls",
+      "ts_ls",
       "marksman",
-      "pyright",
       "tailwindcss",
       "yamlls",
+      "gopls",
+      "pyright",
     }
     require("mason").setup()
     require("mason-lspconfig").setup({
       ensure_installed = ensure_installed,
       automatic_installation = true,
+      automatic_enable = true,
     })
   end,
 }
