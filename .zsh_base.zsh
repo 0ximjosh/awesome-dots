@@ -137,6 +137,10 @@ zplug "plugins/sudo", from:oh-my-zsh
 # ░█░░░█░█░█░█░█▀▀░█░░░█▀▀░░█░░░█░░█░█░█░█░▀▀█
 # ░▀▀▀░▀▀▀░▀░▀░▀░░░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit
+compinit
+
 zstyle ':completion:*' rehash true
 # zstyle ':completion:*' verbose yes
 # zstyle ':completion:*:descriptions' format '%B%d%b'
@@ -212,20 +216,6 @@ export NVM_DIR="$HOME/.nvm"
 # ░█▀█░█░░░▀█▀░█▀█░█▀▀
 # ░█▀█░█░░░░█░░█▀█░▀▀█
 # ░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
-
-# Generic command adaptations
-alias grep='() { $(whence -p grep) --color=auto $@ }'
-alias ls="eza --long --icons -F"
-alias la="eza --long --icons -aF"
-alias lst="eza --long --tree -aF -I node_modules\|.git --git-ignore"
-alias lsta="eza --long --tree -aF"
-
-alias dcu="docker compose up -d"
-alias dc="docker compose"
-alias dcd="docker compose down"
-alias dcl="docker compose logs -f"
-alias rm='rm -v'
-alias wgup="wg-quick up wg0"
 
 function load-nvmrc() {
   local node_version="$(nvm version)"
