@@ -24,3 +24,5 @@ nvim/plugin
 nvim/spell
 nvim/lazy-lock.json
 awesome/artwork
+ghostty/config
+ghostty/config-e
