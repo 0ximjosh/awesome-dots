@@ -64,10 +64,9 @@ return {
         },
       }),
     })
-    local lspconfig = require("lspconfig")
     local capabilities = vim.lsp.protocol.make_client_capabilities()
     capabilities = require("cmp_nvim_lsp").default_capabilities(capabilities)
-    lspconfig.yamlls.setup({
+    vim.lsp.config("yamlls", {
       settings = {
         yaml = {
           schemas = {
@@ -83,7 +82,7 @@ return {
         },
       },
     })
-    lspconfig.pyright.setup({})
+    vim.lsp.config("pyright", {})
     vim.lsp.config("*", {
       capabilities = capabilities,
     })
