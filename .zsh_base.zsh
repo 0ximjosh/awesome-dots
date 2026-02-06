@@ -25,6 +25,7 @@ elif [[  "$TERM_EMULATOR" == *"tmux"*  ]] || [[ "$TERM_EMULATOR" == "login" ]];
 elif [[ "$TERM" == *"xterm-ghostty"* ]];
   then
   export TERM="xterm-ghostty"
+  neofetch
 else
 	export TERM="xterm-256color"
 	neofetch --backend 'w3m'
@@ -37,7 +38,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(git)
-source $ZSH/oh-my-zsh.sh
+# source $ZSH/oh-my-zsh.sh
 
 # Improved less option
 export LESS="--tabs=4 --no-init --LONG-PROMPT --ignore-case --RAW-CONTROL-CHARS"
@@ -91,6 +92,10 @@ export LC_ALL="en_US.UTF-8"
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 [ -f /usr/share/fzf/key-bindings.zsh ] && source /usr/share/fzf/key-bindings.zsh
 [ -f /usr/share/fzf/completion.zsh ] && source /usr/share/fzf/completion.zsh
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
 
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 export FZF_DEFAULT_COMMAND="rg --files"
@@ -128,7 +133,6 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 zplug "plugins/archlinux", from:oh-my-zsh, if:"which pacman"
 
-zplug "plugins/common-aliases", from:oh-my-zsh
 zplug "plugins/colored-man-pages", from:oh-my-zsh
 zplug "plugins/git", from:oh-my-zsh
 zplug "plugins/sudo", from:oh-my-zsh
@@ -198,6 +202,7 @@ fi
 # ░█░█░▀▀█░█▀▀░█▀▄░░░█▀█░█░░░░█░░█▀█░▀▀█░█▀▀░▀▀█
 # ░▀▀▀░▀▀▀░▀▀▀░▀░▀░░░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░▀▀▀
 
+[[ ! -f ~/.config/.aliases.zsh ]] || source ~/.config/.aliases.zsh
 [[ ! -f ~/.aliases.zsh ]] || source ~/.aliases.zsh
 
 # ░█░█░█▀▀░█▀▀░█▀▄░░░█▀▀░█░█░█▀█░█▀█░█▀▄░▀█▀░█▀▀
@@ -207,9 +212,9 @@ fi
 export VISUAL="nvim"
 export EDITOR="$VISUAL"
 export PINENTRY_PROGRAM="pinentry-rofi"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+#[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 
 
@@ -217,23 +222,23 @@ export NVM_DIR="$HOME/.nvm"
 # ░█▀█░█░░░░█░░█▀█░▀▀█
 # ░▀░▀░▀▀▀░▀▀▀░▀░▀░▀▀▀
 
-function load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
-
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
+#function load-nvmrc() {
+#  local node_version="$(nvm version)"
+#  local nvmrc_path="$(nvm_find_nvmrc)"
+#
+#  if [ -n "$nvmrc_path" ]; then
+#    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+#
+#    if [ "$nvmrc_node_version" = "N/A" ]; then
+#      nvm install
+#    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#      nvm use
+#    fi
+#  elif [ "$node_version" != "$(nvm version default)" ]; then
+#    echo "Reverting to nvm default version"
+#    nvm use default
+#  fi
+#}
 
 function automatically_activate_python_venv() {
   if [[ -z $VIRTUAL_ENV ]] ; then
@@ -267,12 +272,11 @@ zshaddhistory() { whence ${${(z)1}[1]} >| /dev/null || return 1 }
 
 autoload -Uz add-zsh-hook 
 add-zsh-hook precmd automatically_activate_python_venv
-add-zsh-hook chpwd load-nvmrc
 
 # ░█▀█░█▀█░█░█░█▀▀░█▀▄░█░░░█▀▀░█░█░█▀▀░█░░░▀█░░▄▀▄░█░█
 # ░█▀▀░█░█░█▄█░█▀▀░█▀▄░█░░░█▀▀░▀▄▀░█▀▀░█░░░░█░░█ █░█▀▄
 # ░▀░░░▀▀▀░▀░▀░▀▀▀░▀░▀░▀▀▀░▀▀▀░░▀░░▀▀▀░▀▀▀░▀▀▀░░▀░░▀░▀
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
