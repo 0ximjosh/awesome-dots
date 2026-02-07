@@ -22,7 +22,7 @@ Most of these dont have dotfiles associated with them, but i use them nonetheles
 
 ## Screenshots
 
-<img width="1728" alt="image" src="https://github.com/user-attachments/assets/afa6a424-330a-4359-bb53-2cc8a35d3f19">
+<img width="2560" height="1438" alt="image" src="https://github.com/user-attachments/assets/d3ba7bc4-af10-4c3e-bd91-eb705b825a38" />
 
 
 ## More info
