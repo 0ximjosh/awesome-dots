@@ -33,6 +33,3 @@ along with dependencies and the likes.
 ## Contributing
 
 Im open to contributions! If there is something missing, or a feature youd like, open an issue or pr and ill work it in!
-
-![Alt](https://repobeats.axiom.co/api/embed/cfce6e9d242557fc3e91b4c160ad5ee14afc33c8.svg "Repobeats analytics image")
-
