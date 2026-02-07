@@ -110,6 +110,10 @@
     custom = "$HOME/.oh-my-zsh/custom/";
     theme = "powerlevel10k/powerlevel10k";
   };
+  programs.dconf.enable = true;
+  programs.dconf.profiles.user.databases = [{
+    settings."org/gnome/desktop/interface".color-scheme = "prefer-dark";
+  }];
 
 
   # TZ / Keyboard
