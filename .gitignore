@@ -19,6 +19,10 @@
 !macos-misc
 !.simplebarrc
 !skhd
+!waybar
+!configuration.nix
+!wofi
+!hypr
 *.lck
 nvim/plugin
 nvim/spell
