@@ -28,8 +28,8 @@
             "format": "{icon}",
             "format-icons": {
                 "active": "",
-                "default": "",
-                "empty": ""
+                "default": "",
+                "empty": ""
             },
             "persistent-workspaces": {
                 "*": 5
@@ -132,7 +132,7 @@
             "format": "",
         },
         "tray": {
-            "icon-size": 14,
+            "icon-size": 18,
             "spacing": 10
         },
 } 

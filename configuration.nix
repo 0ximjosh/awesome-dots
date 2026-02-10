@@ -70,13 +70,23 @@
 
   # Fonts
   fonts.fontconfig.enable = true;
-  fonts.packages = with pkgs; [
-    nerd-fonts.symbols-only
-    font-awesome
-    fira-code
-    fira-code-symbols
-    noto-fonts
-  ];
+  fonts.packages = with pkgs;
+    [
+      nerd-fonts.symbols-only
+      nerd-fonts.fira-code
+      font-awesome
+      fira-code
+      fira-code-symbols
+      noto-fonts
+      noto-fonts-cjk-sans
+      noto-fonts-color-emoji
+      liberation_ttf
+      mplus-outline-fonts.githubRelease
+      dina-font
+      proggyfonts
+      dejavu_fonts
+    ] ++ builtins.filter lib.attrsets.isDerivation
+    (builtins.attrValues pkgs.nerd-fonts);
 
   # Display Drivers
   services.xserver.videoDrivers = [ "nvidia" ];

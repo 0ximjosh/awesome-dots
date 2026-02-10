@@ -8,6 +8,7 @@ window#waybar{
 }
 
 @define-color background #1a1b26;
+@define-color orange #fb923c;
 
 .modules-left {
     padding: 7px;
