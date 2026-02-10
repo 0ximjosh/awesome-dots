@@ -9,6 +9,8 @@
   # Hostname / Networking
   networking.hostName = "mira"; # Define your hostname.
   networking.networkmanager.enable = true;
+  networking.nameservers = [ "1.1.1.1" ];
+  networking.networkmanager.insertNameservers = [ "1.1.1.1" ];
 
   # Imports
   imports = [ # Include the results of the hardware scan.
@@ -233,6 +235,9 @@
     jq
     libnotify
     just
+    prismlauncher
+    host
+    dig
   ];
 
   system.stateVersion = "25.11"; # Did you read the comment?
