@@ -3,7 +3,13 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}:
 
 {
   # Hostname / Networking
@@ -13,13 +19,15 @@
   networking.networkmanager.insertNameservers = [ "1.1.1.1" ];
 
   # Imports
-  imports = [ # Include the results of the hardware scan.
+  imports = [
+    # Include the results of the hardware scan.
     ./hardware-configuration.nix
   ];
 
   # Nix Settings
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.config.allowUnfreePredicate = pkg:
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
     builtins.elem (lib.getName pkg) [
       "steam"
       "steam-original"
@@ -28,7 +36,10 @@
       "1password-gui"
       "1password"
     ];
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = [
+    "nix-command"
+    "flakes"
+  ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = false;
@@ -56,23 +67,24 @@
   # Cron jobs
   services.cron = {
     enable = true;
-    systemCronJobs = let
-      notPrefix = ''
-        export XDG_RUNTIME_DIR=/run/user/$(id -u) && export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus" && ${pkgs.libnotify}/bin/notify-send "Go to bed Job"'';
-    in [
-      ''0 23 * * 0-4 josh ${notPrefix} "Shutting system down in one hour"''
-      ''50 23 * * 0-4 josh ${notPrefix} "Shutting system down in 10 min"''
-      "59 23 * * 0-4 root shutdown -h now"
-      ''0 1 * * 6-7 josh ${notPrefix} hello "Shutting system down in one hour"''
-      ''
-        50 1 * * 6-7 josh ${notPrefix} hello "Shutting system down in one 10 min"''
-      "59 1 * * 6-7 root shutdown -h now"
-    ];
+    systemCronJobs =
+      let
+        notPrefix = ''export XDG_RUNTIME_DIR=/run/user/$(id -u) && export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/$(id -u)/bus" && ${pkgs.libnotify}/bin/notify-send "Go to bed Job"'';
+      in
+      [
+        ''0 23 * * 0-4 josh ${notPrefix} "Shutting system down in one hour"''
+        ''50 23 * * 0-4 josh ${notPrefix} "Shutting system down in 10 min"''
+        "59 23 * * 0-4 root shutdown -h now"
+        ''0 1 * * 6-7 josh ${notPrefix} hello "Shutting system down in one hour"''
+        ''50 1 * * 6-7 josh ${notPrefix} hello "Shutting system down in one 10 min"''
+        "59 1 * * 6-7 root shutdown -h now"
+      ];
   };
 
   # Fonts
   fonts.fontconfig.enable = true;
-  fonts.packages = with pkgs;
+  fonts.packages =
+    with pkgs;
     [
       nerd-fonts.symbols-only
       nerd-fonts.fira-code
@@ -87,8 +99,8 @@
       dina-font
       proggyfonts
       dejavu_fonts
-    ] ++ builtins.filter lib.attrsets.isDerivation
-    (builtins.attrValues pkgs.nerd-fonts);
+    ]
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
 
   # Display Drivers
   services.xserver.videoDrivers = [ "nvidia" ];
@@ -96,7 +108,9 @@
     layout = "us";
     variant = "";
   };
-  hardware.graphics = { enable = true; };
+  hardware.graphics = {
+    enable = true;
+  };
   hardware.nvidia = {
     modesetting.enable = true;
     open = true;
@@ -111,12 +125,9 @@
   programs.waybar.enable = true;
   programs.steam = {
     enable = true;
-    remotePlay.openFirewall =
-      true; # Open ports in the firewall for Steam Remote Play
-    dedicatedServer.openFirewall =
-      true; # Open ports in the firewall for Source Dedicated Server
-    localNetworkGameTransfers.openFirewall =
-      true; # Open ports in the firewall for Steam Local Network Game Transfers
+    remotePlay.openFirewall = true; # Open ports in the firewall for Steam Remote Play
+    dedicatedServer.openFirewall = true; # Open ports in the firewall for Source Dedicated Server
+    localNetworkGameTransfers.openFirewall = true; # Open ports in the firewall for Steam Local Network Game Transfers
   };
   programs._1password.enable = true;
   programs._1password-gui = {
@@ -133,15 +144,18 @@
     defaultEditor = true;
   };
 
-  programs.zsh = { enable = true; };
+  programs.zsh = {
+    enable = true;
+  };
   programs.zsh.ohMyZsh = {
     enable = true;
     custom = "$HOME/.oh-my-zsh/custom/";
     theme = "powerlevel10k/powerlevel10k";
   };
   programs.dconf.enable = true;
-  programs.dconf.profiles.user.databases =
-    [{ settings."org/gnome/desktop/interface".color-scheme = "prefer-dark"; }];
+  programs.dconf.profiles.user.databases = [
+    { settings."org/gnome/desktop/interface".color-scheme = "prefer-dark"; }
+  ];
 
   # TZ / Keyboard
   time.timeZone = "America/Chicago";
@@ -159,25 +173,33 @@
   };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.josh = { shell = pkgs.zsh; };
+  users.extraUsers.josh = {
+    shell = pkgs.zsh;
+  };
   users.users.josh = {
     isNormalUser = true;
     description = "josh";
-    extraGroups = [ "networkmanager" "wheel" "docker" ];
+    extraGroups = [
+      "networkmanager"
+      "wheel"
+      "docker"
+    ];
   };
-  home-manager.users.josh = { pkgs, ... }: {
-    home.pointerCursor = {
-      name = "Adwaita";
-      package = pkgs.adwaita-icon-theme;
-      size = 24;
+  home-manager.users.josh =
+    { pkgs, ... }:
+    {
+      home.pointerCursor = {
+        name = "Adwaita";
+        package = pkgs.adwaita-icon-theme;
+        size = 24;
+      };
+      wayland.windowManager.hyprland.enable = true;
+      home.sessionVariables.NIXOS_OZONE_WL = "1";
+      programs.ghostty.enable = true;
+      programs.firefox.enable = true;
+      wayland.windowManager.hyprland.systemd.enable = false;
+      home.stateVersion = "25.11";
     };
-    wayland.windowManager.hyprland.enable = true;
-    home.sessionVariables.NIXOS_OZONE_WL = "1";
-    programs.ghostty.enable = true;
-    programs.firefox.enable = true;
-    wayland.windowManager.hyprland.systemd.enable = false;
-    home.stateVersion = "25.11";
-  };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -227,7 +249,6 @@
     hyprpicker
     swaynotificationcenter
     hyprpolkitagent
-    tree-sitter
     bun
     obsidian
     piper
@@ -238,7 +259,13 @@
     prismlauncher
     host
     dig
+    google-chrome
+    inputs.tree-sitter.packages."${pkgs.stdenv.hostPlatform.system}".default
+    luajitPackages.luarocks_bootstrap
   ];
+  environment.sessionVariables = {
+    NIXOS_OZONE_WL = "1";
+  };
 
   system.stateVersion = "25.11"; # Did you read the comment?
 }
