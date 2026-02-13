@@ -20,9 +20,10 @@
 !.simplebarrc
 !skhd
 !waybar
-!configuration.nix
 !wofi
 !hypr
+!*.nix
+!flake.lock
 *.lck
 nvim/plugin
 nvim/spell

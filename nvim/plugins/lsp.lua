@@ -1,3 +1,11 @@
+-- Enable servers (configs come from nvim-lspconfig)
+vim.lsp.enable({
+  "lua_ls",
+  "nixd",
+  "pyright",
+  "gopls",
+})
+
 vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
   virtual_text = false,
   signs = false,
@@ -27,10 +35,10 @@ end
 
 vim.api.nvim_create_autocmd("BufEnter", {
   pattern = "*.env",
-  group = vim.api.nvim_create_augroup("__env", {clear=true}),
+  group = vim.api.nvim_create_augroup("__env", { clear = true }),
   callback = function(args)
     vim.diagnostic.disable(args.buf)
-  end
+  end,
 })
 
 -- Show diagnostics under the cursor when holding position
@@ -40,4 +48,3 @@ vim.api.nvim_create_autocmd({ "CursorHold" }, {
   command = "lua OpenDiagnosticIfNoFloat()",
   group = "lsp_diagnostics_hold",
 })
-

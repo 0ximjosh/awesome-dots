@@ -185,6 +185,7 @@
       "docker"
     ];
   };
+
   home-manager.users.josh =
     { pkgs, ... }:
     {
@@ -260,7 +261,6 @@
     host
     dig
     google-chrome
-    inputs.tree-sitter.packages."${pkgs.stdenv.hostPlatform.system}".default
     luajitPackages.luarocks_bootstrap
   ];
   environment.sessionVariables = {
