@@ -12,6 +12,9 @@
         extraPackages = with pkgs; [
           typescript
           typescript-language-server
+          dockerfile-language-server
+          yaml-language-server
+          bash-language-server
           prettierd
           nodePackages.prettier
           stylua
