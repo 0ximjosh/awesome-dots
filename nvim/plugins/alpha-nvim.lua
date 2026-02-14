@@ -38,11 +38,6 @@ dashboard.section.buttons.val = {
   dashboard.button("g", "  Grep word", ":Telescope live_grep<CR>"),
   workspace_button,
   dashboard.button("s", "  Settings", ":e $MYVIMRC<CR>"),
-  dashboard.button("u", "  Update plugins", function()
-    vim.cmd(":TSUpdate")
-    vim.cmd(":MasonUpdate")
-    vim.cmd(":Lazy update")
-  end),
   dashboard.button("q", "  Quit", ":qa<CR>"),
 }
 

@@ -262,6 +262,8 @@
     dig
     google-chrome
     luajitPackages.luarocks_bootstrap
+    ffmpeg
+    yazi
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
