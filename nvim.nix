@@ -11,6 +11,11 @@
         enable = true;
         extraPackages = with pkgs; [
           typescript
+
+          tailwindcss-language-server
+          systemd-language-server
+          pyright
+
           typescript-language-server
           dockerfile-language-server
           yaml-language-server
@@ -39,6 +44,11 @@
             plugin = nvim-autopairs;
             type = "lua";
             config = builtins.readFile ./nvim/plugins/auto-pairs.lua;
+          }
+          {
+            plugin = nvim-ts-autotag;
+            type = "lua";
+            config = builtins.readFile ./nvim/plugins/ts-autotag.lua;
           }
           {
             plugin = nvim-surround;

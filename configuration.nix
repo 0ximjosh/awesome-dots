@@ -7,7 +7,7 @@
   config,
   lib,
   pkgs,
-  inputs,
+  options,
   ...
 }:
 
@@ -143,10 +143,20 @@
     enable = true;
     defaultEditor = true;
   };
-
-  programs.zsh = {
-    enable = true;
-  };
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries =
+    options.programs.nix-ld.libraries.default
+    ++ (with pkgs; [
+      dbus # libdbus-1.so.3
+      fontconfig # libfontconfig.so.1
+      freetype # libfreetype.so.6
+      glib # libglib-2.0.so.0
+      libGL # libGL.so.1
+      libxkbcommon # libxkbcommon.so.0
+      xorg.libX11 # libX11.so.6
+      wayland
+    ]);
+  programs.zsh.enable = true;
   programs.zsh.ohMyZsh = {
     enable = true;
     custom = "$HOME/.oh-my-zsh/custom/";
@@ -230,7 +240,6 @@
     impl
     govulncheck
     mockgen
-    python315
     lua
     gcc
     unzip
@@ -264,6 +273,9 @@
     luajitPackages.luarocks_bootstrap
     ffmpeg
     yazi
+    ninja
+    nix-ld
+    python315
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
