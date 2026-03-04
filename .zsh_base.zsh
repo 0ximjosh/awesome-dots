@@ -97,6 +97,12 @@ if [ -n "${commands[fzf-share]}" ]; then
   source "$(fzf-share)/completion.zsh"
 fi
 
+# Get current os for different zsh confs
+if [[ "$(uname -s)" == "Darwin" ]]; then
+    source <(fzf --zsh)
+fi
+
+
 export FZF_DEFAULT_OPTS="--layout=reverse --inline-info"
 export FZF_DEFAULT_COMMAND="rg --files"
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
