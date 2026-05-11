@@ -282,6 +282,12 @@
     gpu-screen-recorder-gtk
     postgresql
     json_c
+    cmake
+    gnumake
+    gtk4
+    gtk4.dev
+    alsa-scarlett-gui
+    alsa-firmware
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
