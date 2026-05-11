@@ -4,7 +4,7 @@
   alsa-lib,
   openssl,
   zlib,
-  json-c,
+  json_c,
   systemd,
   pkg-config,
   fetchFromGitHub,
@@ -17,8 +17,8 @@ stdenv.mkDerivation {
   src = fetchFromGitHub {
     owner = "geoffreybennett";
     repo = "fcp-support";
-    rev = "master"; # Replace with a specific commit for reproducibility
-    hash = lib.fakeHash; # Run 'nix build' once, then replace this with the real hash from the error
+    rev = "master";
+    sha256 = "U1FpnJr+xydwocpcZB+xu9QwBoXq22gMMJBaSaXspac=";
   };
 
   nativeBuildInputs = [ pkg-config ];
@@ -26,7 +26,7 @@ stdenv.mkDerivation {
     alsa-lib
     openssl
     zlib
-    json-c
+    json_c
     systemd
   ];
 

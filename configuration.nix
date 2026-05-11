@@ -281,6 +281,7 @@
     yt-dlp
     gpu-screen-recorder-gtk
     postgresql
+    json_c
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";
