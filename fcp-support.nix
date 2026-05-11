@@ -33,7 +33,7 @@ stdenv.mkDerivation {
   # The repo uses a standard Makefile
   installPhase = ''
     mkdir -p $out/bin $out/lib/systemd/system
-    DESTDIR=$out make install
+    PREFIX=$out make install
   '';
 
   meta = with lib; {
