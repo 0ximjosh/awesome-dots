@@ -35,6 +35,15 @@
           ./configuration.nix
           ./nvim.nix
           ./audio.nix
+          (
+            { pkgs, ... }:
+            {
+              environment.systemPackages = [
+                # Call your local derivation file
+                (pkgs.callPackage ./fcp-support.nix { })
+              ];
+            }
+          )
         ];
       };
     };
