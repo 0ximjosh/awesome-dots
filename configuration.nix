@@ -115,6 +115,7 @@
     modesetting.enable = true;
     open = true;
     nvidiaSettings = true;
+    powerManagement.enable = true;
     package = config.boot.kernelPackages.nvidiaPackages.stable;
   };
 
@@ -278,6 +279,8 @@
     nix-ld
     python315
     yt-dlp
+    gpu-screen-recorder-gtk
+    postgresql
   ];
   environment.sessionVariables = {
     NIXOS_OZONE_WL = "1";

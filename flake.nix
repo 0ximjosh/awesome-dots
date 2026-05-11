@@ -34,6 +34,7 @@
           home-manager.nixosModules.home-manager
           ./configuration.nix
           ./nvim.nix
+          ./audio.nix
         ];
       };
     };
