@@ -1,22 +1,39 @@
-# Neovim dotfiles
+# Neovim
 
-My neovim config. I try to be more-less minimal yet highly functional
+Standalone Neovim flake, also imported by the NixOS config via home-manager.
 
 ### Featuring
 
 * Telescope for jumping between files
 * Tokyonight as a theme
 * neo-tree as filetree
-* Lazy plugin manager
-* Feline statusline
-* So many more (im lazy to list them here)
+* Treesitter, LSP, blink.cmp, conform, and lualine
 
-### Installation
+### Usage
 
-clone dotfiles and open neovim, everything will self install.
+```bash
+# Run this config without installing it
+nix run ./nvim
+
+# Build the wrapped neovim package
+nix build ./nvim
+```
+
+From home-manager:
+
+```nix
+{
+  inputs.nvim.url = "path:./nvim"; # or a git url with ?dir=nvim
+
+  # ...
+  home-manager.users.josh.imports = [
+    inputs.nvim.homeManagerModules.default
+  ];
+}
+```
 
 ### Layout
 
-- Core settings in `lua/core/*`
-- Plugin settings in `lua/plugins/*`
-
+- Core settings in `options.lua` and `keymap.lua`
+- Plugin settings in `plugins/*`
+- Shared Nix config in `neovim.nix`

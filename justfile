@@ -5,9 +5,16 @@ default:
 update-cursor:
     ./pkgs/cursor/update.sh
 
+# Update flake inputs and nix channels, then rebuild NixOS
 update:
-    yay
-    flatpak update
+    ./scripts/update.sh
+
+# Update flake inputs and nix channels without rebuilding
+update-lock:
+    ./scripts/update.sh --no-rebuild
+
+rebuild:
+    sudo nixos-rebuild switch --flake .#mira
 
 bootstrap_apple:
     #!/bin/bash

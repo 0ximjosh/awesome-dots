@@ -26,6 +26,12 @@
 !flake.lock
 !pkgs
 !pkgs/**
+!hosts
+!hosts/**
+!modules
+!modules/**
+!scripts
+!scripts/**
 *.lck
 nvim/plugin
 nvim/spell

@@ -18,49 +18,9 @@
         "type": "github"
       }
     },
-    "grub2-themes": {
-      "inputs": {
-        "nixpkgs": "nixpkgs"
-      },
-      "locked": {
-        "lastModified": 1786498865,
-        "narHash": "sha256-yvnz/8Nh4iq67X27Vf2oD181SqnYi01M6VnSxBt5qcg=",
-        "owner": "vinceliuice",
-        "repo": "grub2-themes",
-        "rev": "241d3be041c2823cf2430fe2f44bca2215331d67",
-        "type": "github"
-      },
-      "original": {
-        "owner": "vinceliuice",
-        "repo": "grub2-themes",
-        "type": "github"
-      }
-    },
-    "home-manager": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1779506708,
-        "narHash": "sha256-QOD/CNm196nCJRheux/URi4/HE66fthdOMqCJoPP1Y0=",
-        "owner": "nix-community",
-        "repo": "home-manager",
-        "rev": "3ee51fbdac8c8bdfe1e7e1fcaba6520a563f394f",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nix-community",
-        "ref": "release-25.11",
-        "repo": "home-manager",
-        "type": "github"
-      }
-    },
     "nix-github-actions": {
       "inputs": {
         "nixpkgs": [
-          "nvim",
           "nixneovimplugins",
           "poetry2nix",
           "nixpkgs"
@@ -83,7 +43,7 @@
     "nixneovimplugins": {
       "inputs": {
         "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_3",
+        "nixpkgs": "nixpkgs",
         "poetry2nix": "poetry2nix"
       },
       "locked": {
@@ -102,16 +62,16 @@
     },
     "nixpkgs": {
       "locked": {
-        "lastModified": 1786926975,
-        "narHash": "sha256-ptTFEmzCW29hVdsXxMjek4rs03L3fy/u+6gb3nt/8Vg=",
+        "lastModified": 1689844446,
+        "narHash": "sha256-ud/6XYWbXFAJuTTApWyYlFtlc54NAxChS1T9Ns+qT7M=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "fb563b9528f4f6af8d672b32088da933753f8fcd",
+        "rev": "2d82894fa1e2d23a22f40275a78bfbb09b92ffde",
         "type": "github"
       },
       "original": {
         "owner": "NixOS",
-        "ref": "master",
+        "ref": "nixpkgs-unstable",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -132,49 +92,14 @@
         "type": "github"
       }
     },
-    "nixpkgs_3": {
-      "locked": {
-        "lastModified": 1689844446,
-        "narHash": "sha256-ud/6XYWbXFAJuTTApWyYlFtlc54NAxChS1T9Ns+qT7M=",
-        "owner": "NixOS",
-        "repo": "nixpkgs",
-        "rev": "2d82894fa1e2d23a22f40275a78bfbb09b92ffde",
-        "type": "github"
-      },
-      "original": {
-        "owner": "NixOS",
-        "ref": "nixpkgs-unstable",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
-    "nvim": {
-      "inputs": {
-        "nixneovimplugins": "nixneovimplugins",
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "path": "./nvim",
-        "type": "path"
-      },
-      "original": {
-        "path": "./nvim",
-        "type": "path"
-      },
-      "parent": []
-    },
     "poetry2nix": {
       "inputs": {
         "flake-utils": [
-          "nvim",
           "nixneovimplugins",
           "flake-utils"
         ],
         "nix-github-actions": "nix-github-actions",
         "nixpkgs": [
-          "nvim",
           "nixneovimplugins",
           "nixpkgs"
         ]
@@ -195,10 +120,8 @@
     },
     "root": {
       "inputs": {
-        "grub2-themes": "grub2-themes",
-        "home-manager": "home-manager",
-        "nixpkgs": "nixpkgs_2",
-        "nvim": "nvim"
+        "nixneovimplugins": "nixneovimplugins",
+        "nixpkgs": "nixpkgs_2"
       }
     },
     "systems": {
