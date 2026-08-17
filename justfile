@@ -1,6 +1,10 @@
 default:
     @just --list
 
+# Pin pkgs/cursor to the current Cursor stable AppImage from cursor.com
+update-cursor:
+    ./pkgs/cursor/update.sh
+
 update:
     yay
     flatpak update

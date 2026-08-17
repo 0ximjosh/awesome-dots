@@ -35,6 +35,7 @@
       "steam-run"
       "1password-gui"
       "1password"
+      "cursor"
     ];
   nix.settings.experimental-features = [
     "nix-command"
@@ -287,6 +288,7 @@
     lsof
     opencode
     docker-buildx
+    cursor
   ];
 
   # Nikon Config

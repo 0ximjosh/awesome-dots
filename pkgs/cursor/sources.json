@@ -1,0 +1,14 @@
+{
+  "version": "3.16.17",
+  "commitSha": "6b2afae0257df2bb5e1835f15165dc2f0de056b2",
+  "sources": {
+    "x86_64-linux": {
+      "url": "https://downloads.cursor.com/production/6b2afae0257df2bb5e1835f15165dc2f0de056b2/linux/x64/Cursor-3.16.17-x86_64.AppImage",
+      "hash": "sha256-jibunOCUwk6ceaYiE4jhkOvV65SDG5jVddRZePReqHo="
+    },
+    "aarch64-linux": {
+      "url": "https://downloads.cursor.com/production/6b2afae0257df2bb5e1835f15165dc2f0de056b2/linux/arm64/Cursor-3.16.17-aarch64.AppImage",
+      "hash": "sha256-4idPf5cUqAgnzlrNRWHJCqDKJa9HzAkV5+r2CDF0ZwQ="
+    }
+  }
+}
