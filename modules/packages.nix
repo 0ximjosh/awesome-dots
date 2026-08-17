@@ -73,5 +73,6 @@
     opencode
     docker-buildx
     cursor
+    mpv
   ];
 }
