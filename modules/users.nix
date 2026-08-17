@@ -24,11 +24,15 @@
         package = pkgs.adwaita-icon-theme;
         size = 24;
       };
-      wayland.windowManager.hyprland.enable = true;
+      wayland.windowManager.hyprland = {
+        enable = true;
+        systemd.enable = false;
+        package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+        portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+      };
       home.sessionVariables.NIXOS_OZONE_WL = "1";
       programs.ghostty.enable = true;
       programs.firefox.enable = true;
-      wayland.windowManager.hyprland.systemd.enable = false;
       home.stateVersion = "25.11";
     };
 }

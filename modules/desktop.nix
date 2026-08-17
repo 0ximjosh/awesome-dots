@@ -1,11 +1,16 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, inputs, ... }:
 
+let
+  hypr = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system};
+in
 {
   programs.waybar.enable = true;
   programs.hyprland = {
     enable = true;
     withUWSM = true;
     xwayland.enable = true;
+    package = hypr.hyprland;
+    portalPackage = hypr.xdg-desktop-portal-hyprland;
   };
 
   programs.dconf.enable = true;
