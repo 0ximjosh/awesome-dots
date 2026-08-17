@@ -24,12 +24,42 @@
       home-manager,
       ...
     }@inputs:
+    let
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
+      forAllSystems = nixpkgs.lib.genAttrs systems;
+      overlay = final: prev: {
+        cursor = final.callPackage ./pkgs/cursor { };
+      };
+      pkgsFor =
+        system:
+        import nixpkgs {
+          inherit system;
+          config.allowUnfree = true;
+          overlays = [ overlay ];
+        };
+    in
     {
+      overlays.default = overlay;
+
+      packages = forAllSystems (system: {
+        cursor = (pkgsFor system).cursor;
+      });
+
+      apps = forAllSystems (system: {
+        cursor = {
+          type = "app";
+          program = "${self.packages.${system}.cursor}/bin/cursor";
+        };
+      });
+
       nixosConfigurations.mira = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
-        # ... and then to your modules
         modules = [
+          { nixpkgs.overlays = [ overlay ]; }
           grub2-themes.nixosModules.default
           home-manager.nixosModules.home-manager
           ./configuration.nix

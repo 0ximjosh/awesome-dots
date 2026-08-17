@@ -24,6 +24,8 @@
 !hypr
 !*.nix
 !flake.lock
+!pkgs
+!pkgs/**
 *.lck
 nvim/plugin
 nvim/spell
