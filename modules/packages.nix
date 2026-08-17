@@ -74,5 +74,6 @@
     docker-buildx
     cursor
     mpv
+    delta
   ];
 }
