@@ -180,10 +180,46 @@ hl.bind("ALT + L", hl.dsp.window.move({ direction = "right" }))
 hl.bind("ALT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind("ALT + J", hl.dsp.window.move({ direction = "down" }))
 
-hl.bind(mainMod .. " + J",         hl.dsp.window.move({ workspace = "r-1", follow = true }))
-hl.bind(mainMod .. " + K",         hl.dsp.window.move({ workspace = "r+1", follow = true }))
-hl.bind(mainMod .. " + SHIFT + J", hl.dsp.focus({ workspace = "r-1" }))
-hl.bind(mainMod .. " + SHIFT + K", hl.dsp.focus({ workspace = "r+1" }))
+-- r±1 skips workspace IDs reserved for other monitors. With no earlier ID
+-- left on the current monitor, r-1 falls back to workspace 1, which can
+-- belong to a different monitor. Step only inside this monitor's range.
+local function stepWorkspace(offset, moveWindow)
+    return function()
+        local ws = hl.get_active_workspace()
+        if not ws or not ws.id then
+            return
+        end
+
+        local group = nil
+        for _, candidate in ipairs(workspaces) do
+            if ws.id >= candidate.from and ws.id <= candidate.to then
+                group = candidate
+                break
+            end
+        end
+
+        local selector
+        if group then
+            local target = ws.id + offset
+            if target < group.from or target > group.to then
+                return
+            end
+            selector = tostring(target)
+        else
+            selector = offset < 0 and ("r" .. offset) or ("r+" .. offset)
+        end
+
+        if moveWindow then
+            return hl.dispatch(hl.dsp.window.move({ workspace = selector, follow = true }))
+        end
+        return hl.dispatch(hl.dsp.focus({ workspace = selector }))
+    end
+end
+
+hl.bind(mainMod .. " + J",         stepWorkspace(-1, true))
+hl.bind(mainMod .. " + K",         stepWorkspace(1, true))
+hl.bind(mainMod .. " + SHIFT + J", stepWorkspace(-1, false))
+hl.bind(mainMod .. " + SHIFT + K", stepWorkspace(1, false))
 
 hl.bind("CONTROL + ALT + W",   hl.dsp.exec_cmd("wpaperctl next"))
 hl.bind("CONTROL + ALT + D",   hl.dsp.exec_cmd("nikon-drain"))
